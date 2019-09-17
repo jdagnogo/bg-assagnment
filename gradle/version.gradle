@@ -1,0 +1,8 @@
+ext {
+    //dagger
+    daggerVersion = '2.17'
+    roomVersion = '2.1.0'
+    gsonVersion = '2.8.2'
+    okhttpVersion = '3.10.0'
+    retrofitVersion = '2.6.0'
+}

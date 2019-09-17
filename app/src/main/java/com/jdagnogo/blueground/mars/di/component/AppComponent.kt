@@ -1,6 +1,7 @@
 package com.jdagnogo.blueground.mars.di.component
 
 import android.app.Application
+import com.elifox.legocatalog.di.ViewModelModule
 import com.jdagnogo.blueground.mars.BluegroundMarsApplication
 import com.jdagnogo.blueground.mars.di.modules.ActivityModule
 import com.jdagnogo.blueground.mars.di.modules.ApiModule
@@ -13,6 +14,7 @@ import javax.inject.Singleton
     modules = [
         ApiModule::class,
         ActivityModule::class,
+        ViewModelModule::class,
         AndroidSupportInjectionModule::class]
 )
 @Singleton
