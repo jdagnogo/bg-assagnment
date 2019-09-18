@@ -2,7 +2,7 @@ package com.elifox.legocatalog.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.jdagnogo.blueground.mars.ui.LoginViewModel
+import com.jdagnogo.blueground.mars.modelView.LoginViewModel
 import com.jdagnogo.enigma.di.utils.ViewModelFactory
 import com.jdagnogo.enigma.di.utils.ViewModelKey
 import dagger.Binds
