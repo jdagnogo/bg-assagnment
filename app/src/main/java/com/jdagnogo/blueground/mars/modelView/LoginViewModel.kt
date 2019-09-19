@@ -1,12 +1,18 @@
 package com.jdagnogo.blueground.mars.modelView
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.jdagnogo.blueground.mars.R
 import com.jdagnogo.blueground.mars.api.LoginServiceApi
+import com.jdagnogo.blueground.mars.api.model.LoginCredentials
+import com.jdagnogo.blueground.mars.data.repository.LoginRepository
 import com.jdagnogo.blueground.mars.utils.Result
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(loginServiceApi: LoginServiceApi) : ViewModel() {
+class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository) :
+    ViewModel() {
     companion object {
         private const val AT = "@"
         private const val DOT = "."
@@ -15,84 +21,85 @@ class LoginViewModel @Inject constructor(loginServiceApi: LoginServiceApi) : Vie
         private const val COUNTRY_LENGHT = 2
     }
 
-    fun login() {
+    fun login(email: String, password: String) {
+        viewModelScope.launch {
+            loginRepository.login(LoginCredentials(email, password))
+        }
     }
+    lateinit var email: String
+    lateinit var password: String
 
     val currentName: MutableLiveData<Result<String>> by lazy {
-
         MutableLiveData<Result<String>>()
     }
 
-    fun verifyEmail(email: String) {
-        if (isEmailEmpty(email)) return
-        if (!isEmailContainsADot(email)) return
-        if (!isEmailContainsAnAt(email)) return
-        if (!isEmailSizeCorrect(email)) return
-        if (!isEmailContainsYearOfBirth(email)) return
-        if (!isEmailContainsCountry(email)) return
-        currentName.postValue(Result(Result.Status.SUCCESS, "", ""))
+    fun verifyEmail(email: String, context: Context) {
+        if (isEmailEmpty(email, context)) return
+        if (!isEmailContainsADot(email, context)) return
+        if (!isEmailContainsAnAt(email, context)) return
+        if (!isEmailSizeCorrect(email, context)) return
+        if (!isEmailContainsYearOfBirth(email, context)) return
+        if (!isEmailContainsCountry(email, context)) return
+        currentName.value = Result(Result.Status.SUCCESS, "", "")
     }
 
-    fun isEmailContainsCountry(email: String): Boolean {
+    private fun isEmailContainsCountry(email: String, context: Context): Boolean {
         val emailSplitAroundDot = email.split(DOT)
         val country = emailSplitAroundDot[1]
         if (country.length != COUNTRY_LENGHT) {
             currentName.value = Result(
-                Result.Status.ERROR,
-                "",
-                "Your email must have a 2 letter country code after the dot"
+                Result.Status.ERROR, null, context.getString(R.string.error_country)
             )
             return false
         } else return true
     }
 
-    fun isEmailContainsAnAt(email: String): Boolean {
+    private fun isEmailContainsAnAt(email: String, context: Context): Boolean {
         val emailSplitAroundDot = email.split(AT)
         if (emailSplitAroundDot.size != 2) {
             currentName.value =
-                Result(Result.Status.ERROR, "", "Your email must have an (@)at and only one")
+                Result(Result.Status.ERROR, null, context.getString(R.string.error_at))
             return false
         } else return true
     }
 
-    fun isEmailSizeCorrect(email: String): Boolean {
+    private fun isEmailSizeCorrect(email: String, context: Context): Boolean {
         val emailSplitAroundAt = email.split(AT)
         val firstChar = emailSplitAroundAt[0]
         if (firstChar.length !in MIN_CHAR_LENGHT..MAX_CHAR_LENGHT) {
             currentName.value = Result(
                 Result.Status.ERROR,
                 "",
-                "Your email must contains 2 to 8 alphanumeric characters"
+                context.getString(R.string.error_size)
             )
             return false
         } else return true
     }
 
-    fun isEmailContainsYearOfBirth(email: String): Boolean {
+    private fun isEmailContainsYearOfBirth(email: String, context: Context): Boolean {
         val year = email.substringAfter(AT).substringBefore(DOT)
         if (year.toIntOrNull() == null || year.length != 4) {
             currentName.value = Result(
-                Result.Status.ERROR,
-                "",
-                "Your email must contains Year of birth in 4 digits before the @(at) and before the .(dot)"
+                Result.Status.ERROR, null, context.getString(R.string.error_year_of_birth)
             )
             return false
         } else return true
     }
 
-    fun isEmailContainsADot(email: String): Boolean {
+    private fun isEmailContainsADot(email: String, context: Context): Boolean {
         val emailSplitAroundDot = email.split(DOT)
         if (emailSplitAroundDot.size != 2) {
-            currentName.postValue(
-                Result(Result.Status.ERROR, "", "Your email must have an (.)dot and only one")
-            )
+            currentName.value =
+                Result(Result.Status.ERROR, null, context.getString(R.string.error_dot))
             return false
         } else return true
     }
 
-    fun isEmailEmpty(email: String): Boolean {
+    private fun isEmailEmpty(email: String, context: Context): Boolean {
         if (email.isEmpty()) {
-            currentName.value = Result(Result.Status.ERROR, "", "Enter an Email")
+            currentName.value = Result(
+                Result.Status.ERROR, null, context.getString(R.string.error_empty_email)
+            )
             return true
         } else return false
     }

@@ -2,6 +2,7 @@ package com.jdagnogo.blueground.mars.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,9 +13,11 @@ import com.jdagnogo.blueground.mars.utils.Result
 import com.jdagnogo.blueground.mars.utils.Result.Status.*
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.*
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
-class MainActivity : AppCompatActivity() {
+class MainActivity() : AppCompatActivity() {
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -31,15 +34,19 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             val email = user_email.text.toString()
-            loginViewModel.verifyEmail(email)
+            loginViewModel.verifyEmail(email,this)
         }
     }
 
     val emailObserver = Observer<Result<String>> { result ->
         when (result.status) {
-            SUCCESS -> loginViewModel.login()
-            LOADING -> Log.d("TOTO", result.message)
-            ERROR -> Log.d("TOTO", result.message)
+            SUCCESS -> {
+                    val email = user_email.text.toString()
+                    val password = password.text.toString()
+                    loginViewModel.login(email,password)
+            }
+            LOADING -> return@Observer
+            ERROR -> Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
         }
     }
 }
