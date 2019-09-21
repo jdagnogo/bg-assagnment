@@ -4,8 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.*
 import com.jdagnogo.blueground.mars.R
-import com.jdagnogo.blueground.mars.api.LoginServiceApi
-import com.jdagnogo.blueground.mars.api.model.LoginCredentials
+import com.jdagnogo.blueground.mars.api.model.LoginParameters
 import com.jdagnogo.blueground.mars.data.repository.LoginRepository
 import com.jdagnogo.blueground.mars.utils.Result
 import kotlinx.coroutines.launch
@@ -20,14 +19,26 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
         private const val MIN_CHAR_LENGHT = 1
         private const val COUNTRY_LENGHT = 2
     }
+    private fun saveToken(){
+
+    }
 
     fun login(email: String, password: String) {
         viewModelScope.launch {
-            loginRepository.login(LoginCredentials(email, password))
+           val result = loginRepository.login(LoginParameters(email, password))
+            when(result.status){
+                Result.Status.SUCCESS -> {
+                    saveToken()
+                    login.value = Result(Result.Status.SUCCESS, "", "")
+                }
+                Result.Status.ERROR -> login.value = Result(Result.Status.ERROR, "", result.message)
+            }
         }
     }
-    lateinit var email: String
-    lateinit var password: String
+
+    val login: MutableLiveData<Result<String>> by lazy {
+        MutableLiveData<Result<String>>()
+    }
 
     val currentName: MutableLiveData<Result<String>> by lazy {
         MutableLiveData<Result<String>>()

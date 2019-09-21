@@ -1,12 +1,17 @@
 package com.jdagnogo.blueground.mars.data.repository
 
-import androidx.lifecycle.LiveData
-import com.jdagnogo.blueground.mars.api.model.LoginCredentials
+import com.jdagnogo.blueground.mars.api.model.LoginParameters
+import com.jdagnogo.blueground.mars.api.model.LoginResponse
 import com.jdagnogo.blueground.mars.data.remotedata.LoginRemoteDataSouce
+import com.jdagnogo.blueground.mars.utils.Result
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(private val loginRemoteDataSouce: LoginRemoteDataSouce) {
-    suspend fun login(credentials: LoginCredentials) {
-        loginRemoteDataSouce.login(credentials)
+    suspend fun login(parameters: LoginParameters): Result<LoginResponse> {
+        return loginRemoteDataSouce.login(parameters)
+    }
+
+    suspend fun saveNewToken() : Boolean{
+        return true
     }
 }

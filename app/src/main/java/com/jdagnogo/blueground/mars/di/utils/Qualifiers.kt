@@ -6,3 +6,11 @@ import javax.inject.Qualifier
 @Qualifier
 annotation class BluegroundAPI
 
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class CoroutineScropeIO
+
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class AppContext

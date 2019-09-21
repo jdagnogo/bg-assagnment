@@ -1,16 +1,23 @@
 package com.jdagnogo.blueground.mars.di.modules
 
 
+import android.content.Context
+import com.elifox.legocatalog.di.AppContext
 import com.elifox.legocatalog.di.BluegroundAPI
+import com.elifox.legocatalog.di.CoroutineScropeIO
 import com.google.gson.Gson
+import com.jdagnogo.blueground.mars.BluegroundMarsApplication
+import com.jdagnogo.blueground.mars.api.AuthInterceptor
 import com.jdagnogo.blueground.mars.api.LoginServiceApi
 import com.jdagnogo.blueground.mars.api.LoginServiceApi.Companion.ENDPOINT
+import com.jdagnogo.blueground.mars.data.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -31,17 +38,29 @@ class ApiModule {
     @BluegroundAPI
     @Provides
     @Singleton
-    fun provideOkhttpClient(): OkHttpClient {
+    fun provideOkhttpClient(
+        tokenRepository: TokenRepository,
+        @CoroutineScropeIO ioCoroutineScope: CoroutineScope
+    ): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
-        httpClient.connectTimeout(30, TimeUnit.SECONDS)
-        httpClient.readTimeout(30, TimeUnit.SECONDS)
+        httpClient.authenticator(AuthInterceptor(tokenRepository, ioCoroutineScope))
         return httpClient.build()
     }
 
+    @Provides
+    @Singleton
+    fun provideTokenRepository(@AppContext context: Context) = TokenRepository(context)
+
+    @CoroutineScropeIO
+    @Provides
+    fun provideCoroutineScopeIO() = CoroutineScope(Dispatchers.IO)
+
     @Singleton
     @Provides
-    fun provideLoginService(@BluegroundAPI okhttpClient: OkHttpClient,
-                            gsonConverterFactory: GsonConverterFactory) =
+    fun provideLoginService(
+        @BluegroundAPI okhttpClient: OkHttpClient,
+        gsonConverterFactory: GsonConverterFactory
+    ) =
         createRetrofit(okhttpClient, gsonConverterFactory).create(LoginServiceApi::class.java)
 
     private fun createRetrofit(
@@ -53,4 +72,9 @@ class ApiModule {
             .addConverterFactory(gsonConverterFactory)
             .build()
     }
+
+    @AppContext
+    @Provides
+    @Singleton
+    fun provideContext(application: BluegroundMarsApplication): Context = application
 }
