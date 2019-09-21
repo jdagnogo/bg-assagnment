@@ -3,7 +3,6 @@
     <string name="title_activity_main">MainActivity</string>
 
 
-
     <string name="error_country">Your email must have a 2 letter country code after the dot</string>
     <string name="error_at">Your email must have an (@)at and only one</string>
     <string name="error_size">Your email must have a 2 letter country code after the dot</string>

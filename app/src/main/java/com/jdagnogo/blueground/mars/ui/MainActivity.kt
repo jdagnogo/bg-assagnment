@@ -1,7 +1,7 @@
 package com.jdagnogo.blueground.mars.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -34,6 +34,14 @@ class MainActivity() : AppCompatActivity() {
             val email = user_email.text.toString()
             loginViewModel.verifyEmail(email, this)
         }
+        setUpCredidentials()
+    }
+
+    // Personal method to not have to enter value each time
+    // TODO delete this method
+    private fun setUpCredidentials() {
+        user_email.setText("ben@2041.uk")
+        password.setText("idietoosoon")
     }
 
     val emailObserver = Observer<Result<String>> { result ->
@@ -51,7 +59,8 @@ class MainActivity() : AppCompatActivity() {
     val loginObserver = Observer<Result<String>> { result ->
         when (result.status) {
             SUCCESS -> {
-                Log.d("TOTO", "open new acitivty")
+                val intent = Intent(this, BrowseUnitsActivity::class.java)
+                startActivity(intent)
             }
             LOADING -> return@Observer
             ERROR -> Snackbar.make(layout, R.string.login_fail, Snackbar.LENGTH_LONG)
