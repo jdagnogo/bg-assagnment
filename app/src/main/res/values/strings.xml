@@ -10,4 +10,5 @@
     <string name="error_dot">Your email must have an (.)dot and only one</string>
     <string name="error_empty_email">Enter an Email</string>
     <string name="login_fail">Invalid email and or password</string>
+    <string name="book_textview">You just book it!</string>
 </resources>

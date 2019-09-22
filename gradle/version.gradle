@@ -9,4 +9,5 @@ ext {
     timberVersion = '4.7.1'
     lifecycleVersion = "2.1.0"
     navVersion = "2.1.0"
+    glideVersion = '4.9.0'
 }
