@@ -1,32 +1,28 @@
 package com.jdagnogo.blueground.mars.adapter
 
 import android.content.Context
+import android.graphics.drawable.LayerDrawable
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.jdagnogo.blueground.mars.R
 import com.jdagnogo.blueground.mars.model.MarsUnit
-import android.graphics.PorterDuff
-import android.graphics.drawable.LayerDrawable
-import android.graphics.Color
-import android.view.View.GONE
-import android.view.View.VISIBLE
-import androidx.core.content.ContextCompat
 
 
 class UnitsAdapter : RecyclerView.Adapter<UnitsAdapter.UnitListItem>() {
     companion object {
         private const val CURRENCY = "€ "
     }
-
-    lateinit var mContext: Context
     val mDataset = mutableListOf<MarsUnit>()
 
     class UnitListItem(view: View) : RecyclerView.ViewHolder(view) {
@@ -44,10 +40,6 @@ class UnitsAdapter : RecyclerView.Adapter<UnitsAdapter.UnitListItem>() {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item_unit, parent, false)
         return UnitListItem(view)
-    }
-
-    fun setContext(context: Context) {
-        mContext = context
     }
 
     override fun getItemCount(): Int = mDataset.size
