@@ -7,6 +7,7 @@ import com.elifox.legocatalog.di.BluegroundAPI
 import com.elifox.legocatalog.di.CoroutineScropeIO
 import com.google.gson.Gson
 import com.jdagnogo.blueground.mars.BluegroundMarsApplication
+import com.jdagnogo.blueground.mars.api.AuthAuthenticator
 import com.jdagnogo.blueground.mars.api.AuthInterceptor
 import com.jdagnogo.blueground.mars.api.LoginServiceApi
 import com.jdagnogo.blueground.mars.api.LoginServiceApi.Companion.ENDPOINT
@@ -43,17 +44,10 @@ class ApiModule {
         @CoroutineScropeIO ioCoroutineScope: CoroutineScope
     ): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
-        httpClient.authenticator(AuthInterceptor(tokenRepository, ioCoroutineScope))
+        httpClient.authenticator(AuthAuthenticator(tokenRepository, ioCoroutineScope))
+            .addInterceptor(AuthInterceptor(tokenRepository))
         return httpClient.build()
     }
-
-    @Provides
-    @Singleton
-    fun provideTokenRepository(@AppContext context: Context) = TokenRepository(context)
-
-    @CoroutineScropeIO
-    @Provides
-    fun provideCoroutineScopeIO() = CoroutineScope(Dispatchers.IO)
 
     @Singleton
     @Provides
@@ -72,6 +66,10 @@ class ApiModule {
             .addConverterFactory(gsonConverterFactory)
             .build()
     }
+
+    @CoroutineScropeIO
+    @Provides
+    fun provideCoroutineScopeIO() = CoroutineScope(Dispatchers.IO)
 
     @AppContext
     @Provides

@@ -1,11 +1,10 @@
 package com.jdagnogo.blueground.mars.di.component
 
-import android.app.Application
-import com.elifox.legocatalog.di.ViewModelModule
 import com.jdagnogo.blueground.mars.BluegroundMarsApplication
 import com.jdagnogo.blueground.mars.di.modules.ActivityModule
 import com.jdagnogo.blueground.mars.di.modules.ApiModule
 import com.jdagnogo.blueground.mars.di.modules.RepositoryModule
+import com.jdagnogo.blueground.mars.di.modules.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
@@ -28,5 +27,6 @@ interface AppComponent {
 
         fun build(): AppComponent
     }
+
     fun inject(application: BluegroundMarsApplication)
 }

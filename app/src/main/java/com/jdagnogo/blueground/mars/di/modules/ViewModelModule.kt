@@ -1,4 +1,4 @@
-package com.elifox.legocatalog.di
+package com.jdagnogo.blueground.mars.di.modules
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

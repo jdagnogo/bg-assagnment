@@ -2,8 +2,8 @@ package com.jdagnogo.blueground.mars.api
 
 import com.jdagnogo.blueground.mars.api.model.LoginParameters
 import com.jdagnogo.blueground.mars.api.model.LoginResponse
+import com.jdagnogo.blueground.mars.api.model.LoginToken
 import com.jdagnogo.blueground.mars.api.model.RefreshTokenParameters
-import com.jdagnogo.blueground.mars.api.model.RefreshTokenResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Headers
@@ -23,5 +23,5 @@ interface LoginServiceApi {
     suspend fun login(@Body data: LoginParameters): Response<LoginResponse>
 
     @POST(REFRESH_TOKEN)
-    suspend fun refreshToken(@Body data: RefreshTokenParameters): Response<RefreshTokenResponse>
+    suspend fun refreshToken(@Body data: RefreshTokenParameters): Response<LoginToken>
 }

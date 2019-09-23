@@ -10,8 +10,4 @@ class LoginRepository @Inject constructor(private val loginRemoteDataSouce: Logi
     suspend fun login(parameters: LoginParameters): Result<LoginResponse> {
         return loginRemoteDataSouce.login(parameters)
     }
-
-    suspend fun saveNewToken() : Boolean{
-        return true
-    }
 }
