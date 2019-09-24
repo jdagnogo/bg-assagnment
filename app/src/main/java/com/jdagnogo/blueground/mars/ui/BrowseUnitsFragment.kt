@@ -13,10 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jdagnogo.blueground.mars.R
 import com.jdagnogo.blueground.mars.adapter.MarsUnitsAdapter
-import com.jdagnogo.blueground.mars.adapter.UnitsAdapter
 import com.jdagnogo.blueground.mars.modelView.BrowseUnitsViewModel
-import com.jdagnogo.blueground.mars.modelView.LoginViewModel
-import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_browse_units.view.*
 import javax.inject.Inject

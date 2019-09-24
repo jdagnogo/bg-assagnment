@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.jdagnogo.blueground.mars.R
+import com.jdagnogo.blueground.mars.api.LoginServiceApi.Companion.ENDPOINT
 import com.jdagnogo.blueground.mars.model.MarsUnit
 import kotlinx.android.synthetic.main.list_item_unit.view.*
 
@@ -41,7 +42,7 @@ class MarsUnitsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val imageView = itemView.image
             if (!pictures[0].isEmpty()) {
                 Glide.with(imageView.context)
-                    .load(pictures[0])
+                    .load(ENDPOINT + pictures[0])
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(imageView)
