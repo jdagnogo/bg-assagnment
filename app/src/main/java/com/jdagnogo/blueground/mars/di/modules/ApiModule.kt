@@ -2,6 +2,7 @@ package com.jdagnogo.blueground.mars.di.modules
 
 
 import android.content.Context
+import com.elifox.legocatalog.api.BaseDataSource
 import com.elifox.legocatalog.di.AppContext
 import com.elifox.legocatalog.di.BluegroundAPI
 import com.elifox.legocatalog.di.CoroutineScropeIO
@@ -11,6 +12,8 @@ import com.jdagnogo.blueground.mars.api.AuthAuthenticator
 import com.jdagnogo.blueground.mars.api.AuthInterceptor
 import com.jdagnogo.blueground.mars.api.LoginServiceApi
 import com.jdagnogo.blueground.mars.api.LoginServiceApi.Companion.ENDPOINT
+import com.jdagnogo.blueground.mars.api.UnitsDao
+import com.jdagnogo.blueground.mars.data.remotedata.UnitsDataFactory
 import com.jdagnogo.blueground.mars.data.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
@@ -48,6 +51,29 @@ class ApiModule {
             .addInterceptor(AuthInterceptor(tokenRepository))
         return httpClient.build()
     }
+
+    @Singleton
+    @Provides
+    fun provideBaseDataSource(): BaseDataSource {
+        return BaseDataSource()
+    }
+
+    @Singleton
+    @Provides
+    fun provideUnitsDataFactory(
+        service: UnitsDao,
+        @CoroutineScropeIO ioCoroutineScope: CoroutineScope, baseDataSource: BaseDataSource
+    ): UnitsDataFactory {
+        return UnitsDataFactory(service,ioCoroutineScope,baseDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUnitsDao(
+        @BluegroundAPI okhttpClient: OkHttpClient,
+        gsonConverterFactory: GsonConverterFactory
+    ) =
+        createRetrofit(okhttpClient, gsonConverterFactory).create(UnitsDao::class.java)
 
     @Singleton
     @Provides

@@ -5,11 +5,11 @@ import com.jdagnogo.blueground.mars.utils.Result
 import timber.log.Timber
 
 /**
- * Abstract Base Data source class with error handling
+ *  Base Data source class with error handling
  */
-abstract class BaseDataSource {
+ class BaseDataSource {
 
-    protected suspend fun <T> getResult(call: suspend () -> Response<T>): Result<T> {
+     suspend fun <T> getResult(call: suspend () -> Response<T>): Result<T> {
         try {
             val response = call()
             if (response.isSuccessful) {

@@ -2,6 +2,7 @@ package com.jdagnogo.blueground.mars.di.modules
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.jdagnogo.blueground.mars.modelView.BrowseUnitsViewModel
 import com.jdagnogo.blueground.mars.modelView.LoginViewModel
 import com.jdagnogo.enigma.di.utils.ViewModelFactory
 import com.jdagnogo.enigma.di.utils.ViewModelKey
@@ -15,7 +16,12 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
-    abstract fun bindThemeViewModel(viewModel: LoginViewModel): ViewModel
+    abstract fun bindLoginViewModel(viewModel: LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(BrowseUnitsViewModel::class)
+    abstract fun bindUnitViewModel(viewModel: BrowseUnitsViewModel): ViewModel
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

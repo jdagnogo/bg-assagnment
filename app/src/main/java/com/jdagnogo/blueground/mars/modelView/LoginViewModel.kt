@@ -5,12 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.*
 import com.jdagnogo.blueground.mars.R
 import com.jdagnogo.blueground.mars.api.model.LoginParameters
+import com.jdagnogo.blueground.mars.api.model.LoginResponse
+import com.jdagnogo.blueground.mars.api.model.LoginToken
 import com.jdagnogo.blueground.mars.data.repository.LoginRepository
+import com.jdagnogo.blueground.mars.data.repository.TokenRepository
 import com.jdagnogo.blueground.mars.utils.Result
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository) :
+class LoginViewModel @Inject constructor(
+    private val loginRepository: LoginRepository,
+    private val tokenRepository: TokenRepository
+) :
     ViewModel() {
     companion object {
         private const val AT = "@"
@@ -19,16 +25,18 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
         private const val MIN_CHAR_LENGHT = 1
         private const val COUNTRY_LENGHT = 2
     }
-    private fun saveToken(){
 
+    private fun saveToken(loginToken: LoginToken) {
+        tokenRepository.saveTokenInformations(loginToken)
     }
 
     fun login(email: String, password: String) {
         viewModelScope.launch {
-           val result = loginRepository.login(LoginParameters(email, password))
-            when(result.status){
+            val result = loginRepository.login(LoginParameters(email, password))
+            when (result.status) {
                 Result.Status.SUCCESS -> {
-                    saveToken()
+                    val tokenInformations : LoginToken =(result.data as LoginResponse).token
+                    saveToken(tokenInformations)
                     login.value = Result(Result.Status.SUCCESS, "", "")
                 }
                 Result.Status.ERROR -> login.value = Result(Result.Status.ERROR, "", result.message)

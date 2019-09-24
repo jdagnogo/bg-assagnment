@@ -1,6 +1,5 @@
 package com.jdagnogo.blueground.mars.adapter
 
-import android.content.Context
 import android.graphics.drawable.LayerDrawable
 import android.view.LayoutInflater
 import android.view.View
@@ -64,9 +63,9 @@ class UnitsAdapter : RecyclerView.Adapter<UnitsAdapter.UnitListItem>() {
             val stars = ratingBar.progressDrawable as LayerDrawable
             stars.setTint(ContextCompat.getColor(ratingBar.context, R.color.colorAccent))
             val imageView = holder.image
-            if (!image.isEmpty()) {
+            if (!pictures[0].isEmpty()) {
                 Glide.with(imageView.context)
-                    .load(image)
+                    .load(pictures[0])
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(imageView)

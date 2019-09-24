@@ -1,16 +1,19 @@
 package com.jdagnogo.blueground.mars.api
 
 import com.jdagnogo.blueground.mars.api.model.LoginToken
-import com.jdagnogo.blueground.mars.api.model.RefreshTokenParameters
+import com.jdagnogo.blueground.mars.api.model.UnitsResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface UnitsDao {
-    companion object{
-        const val GET_UNITS="api/units"
+    companion object {
+        const val GET_UNITS = "api/units"
     }
 
-    @POST(GET_UNITS)
-    suspend fun getUnits(@Body data: RefreshTokenParameters): Response<LoginToken>
+    @GET(GET_UNITS)
+    suspend fun getUnits(
+        @Query("page") page: Number,
+        @Query("perPage") perPage: Number
+    ): Response<UnitsResponse>
 }
