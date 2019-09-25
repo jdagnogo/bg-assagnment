@@ -56,7 +56,7 @@ class UnitDetailsFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(UnitDetailsViewModel::class.java)
         view.book.setOnClickListener{
-            if (marsUnit.id.isEmpty()) return@setOnClickListener
+            if (!::marsUnit.isInitialized) return@setOnClickListener
             viewModel.bookUnit(marsUnit.id,marsUnit.availability[0])
         }
         return view
