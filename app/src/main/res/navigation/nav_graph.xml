@@ -7,5 +7,24 @@
     <fragment
             android:id="@+id/browseUnitsFragment"
             android:name="com.jdagnogo.blueground.mars.ui.BrowseUnitsFragment"
-            android:label="BrowseUnitsFragment" />
+            android:label="BrowseUnitsFragment">
+        <action
+                android:id="@+id/action_browseUnitsFragment_to_unitDetailsFragment"
+                app:destination="@id/unitDetailsFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
+        </action>
+
+    </fragment>
+    <fragment
+            android:id="@+id/unitDetailsFragment"
+            android:name="com.jdagnogo.blueground.mars.ui.UnitDetailsFragment"
+            android:label="UnitDetailsFragment" >
+        <argument
+                android:name="id"
+                app:argType="string"
+                android:defaultValue="id" />
+    </fragment>
 </navigation>

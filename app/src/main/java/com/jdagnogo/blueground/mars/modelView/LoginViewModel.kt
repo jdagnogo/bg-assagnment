@@ -6,7 +6,7 @@ import androidx.lifecycle.*
 import com.jdagnogo.blueground.mars.R
 import com.jdagnogo.blueground.mars.api.model.LoginParameters
 import com.jdagnogo.blueground.mars.api.model.LoginResponse
-import com.jdagnogo.blueground.mars.api.model.LoginToken
+import com.jdagnogo.blueground.mars.model.LoginToken
 import com.jdagnogo.blueground.mars.data.repository.LoginRepository
 import com.jdagnogo.blueground.mars.data.repository.TokenRepository
 import com.jdagnogo.blueground.mars.utils.Result

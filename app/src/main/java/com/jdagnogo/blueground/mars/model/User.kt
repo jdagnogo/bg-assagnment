@@ -1,4 +1,4 @@
-package com.jdagnogo.blueground.mars.api.model
+package com.jdagnogo.blueground.mars.model
 
 import com.google.gson.annotations.SerializedName
 

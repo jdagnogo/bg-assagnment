@@ -2,14 +2,14 @@ package com.jdagnogo.blueground.mars.api
 
 import com.jdagnogo.blueground.mars.api.model.LoginParameters
 import com.jdagnogo.blueground.mars.api.model.LoginResponse
-import com.jdagnogo.blueground.mars.api.model.LoginToken
+import com.jdagnogo.blueground.mars.model.LoginToken
 import com.jdagnogo.blueground.mars.api.model.RefreshTokenParameters
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
-interface LoginServiceApi {
+interface LoginDao {
 
     companion object {
         const val ENDPOINT = "http://mars.theblueground.net/"

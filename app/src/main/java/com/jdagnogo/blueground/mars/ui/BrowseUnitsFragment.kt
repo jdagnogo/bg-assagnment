@@ -35,7 +35,8 @@ class BrowseUnitsFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(BrowseUnitsViewModel::class.java)
         marsUnitsAdapter = MarsUnitsAdapter()
-        recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         recyclerView.adapter = marsUnitsAdapter
         viewModel.unitList.observe(this, Observer {
             marsUnitsAdapter.submitList(it)

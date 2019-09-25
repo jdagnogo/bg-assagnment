@@ -1,10 +1,7 @@
 package com.jdagnogo.blueground.mars.di.component
 
 import com.jdagnogo.blueground.mars.BluegroundMarsApplication
-import com.jdagnogo.blueground.mars.di.modules.ActivityModule
-import com.jdagnogo.blueground.mars.di.modules.ApiModule
-import com.jdagnogo.blueground.mars.di.modules.RepositoryModule
-import com.jdagnogo.blueground.mars.di.modules.ViewModelModule
+import com.jdagnogo.blueground.mars.di.modules.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
@@ -13,6 +10,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         ApiModule::class,
+        DataModule::class,
         RepositoryModule::class,
         ActivityModule::class,
         ViewModelModule::class,

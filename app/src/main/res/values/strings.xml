@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Blueground Mars</string>
     <string name="title_activity_main">MainActivity</string>
 
 
@@ -11,4 +11,9 @@
     <string name="error_empty_email">Enter an Email</string>
     <string name="login_fail">Invalid email and or password</string>
     <string name="book_textview">You just book it!</string>
+    <string name="book_button">Book</string>
+    <string name="error_loading_unit_details">An error occured</string>
+    <string name="close">close</string>
+    <string name="years">Years :</string>
+    <string name="reference">Reference :</string>
 </resources>

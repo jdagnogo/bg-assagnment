@@ -1,9 +1,7 @@
 package com.jdagnogo.blueground.mars.data.repository
 
 import android.content.Context
-import android.content.SharedPreferences
-import com.jdagnogo.blueground.mars.api.AuthAuthenticator
-import com.jdagnogo.blueground.mars.api.model.LoginToken
+import com.jdagnogo.blueground.mars.model.LoginToken
 import com.jdagnogo.blueground.mars.api.model.RefreshTokenParameters
 import javax.inject.Inject
 

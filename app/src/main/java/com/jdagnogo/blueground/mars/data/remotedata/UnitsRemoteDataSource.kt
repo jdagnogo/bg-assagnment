@@ -37,7 +37,6 @@ class UnitsRemoteDataSource @Inject constructor(private val service: UnitsDao, @
     }
 
     override fun loadAfter(params: LoadParams<Number>, callback: LoadCallback<Number, MarsUnit>) {
-        Timber.i("Loading Rang " + params.key + " Count " + params.requestedLoadSize);
         state.postValue(Result.Status.LOADING)
         ioCoroutineScope.launch {
             val response =
@@ -56,6 +55,4 @@ class UnitsRemoteDataSource @Inject constructor(private val service: UnitsDao, @
     override fun loadBefore(params: LoadParams<Number>, callback: LoadCallback<Number, MarsUnit>) {
 
     }
-
-
 }

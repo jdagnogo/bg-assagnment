@@ -2,8 +2,8 @@ package com.jdagnogo.blueground.mars.api
 
 import com.elifox.legocatalog.di.CoroutineScropeIO
 import com.google.gson.Gson
-import com.jdagnogo.blueground.mars.api.LoginServiceApi.Companion.AUTHORIZATION
-import com.jdagnogo.blueground.mars.api.model.LoginToken
+import com.jdagnogo.blueground.mars.api.LoginDao.Companion.AUTHORIZATION
+import com.jdagnogo.blueground.mars.model.LoginToken
 import com.jdagnogo.blueground.mars.data.repository.TokenRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +28,12 @@ class AuthAuthenticator @Inject constructor(
                 val accessToken = body?.accessToken
                 if (accessToken == null) return@launch
                 var loginToken =
-                    LoginToken(body.tokenType, body.accessToken, body.refreshToken, body.expiresIn)
+                    LoginToken(
+                        body.tokenType,
+                        body.accessToken,
+                        body.refreshToken,
+                        body.expiresIn
+                    )
                 tokenRepository.saveTokenInformations(loginToken)
                 relaunchRequest(request, accessToken)
             }
@@ -40,12 +45,12 @@ class AuthAuthenticator @Inject constructor(
     // If I finish the project I will come back to find a better solution
     suspend fun refreshTokenFromServer(): retrofit2.Response<LoginToken> {
         val retrofit = Retrofit.Builder()
-            .baseUrl(LoginServiceApi.ENDPOINT)
+            .baseUrl(LoginDao.ENDPOINT)
             .client(OkHttpClient.Builder().build())
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .build()
 
-        val service = retrofit.create(LoginServiceApi::class.java)
+        val service = retrofit.create(LoginDao::class.java)
         return service.refreshToken(tokenRepository.getRefreshTokenParameters())
     }
 

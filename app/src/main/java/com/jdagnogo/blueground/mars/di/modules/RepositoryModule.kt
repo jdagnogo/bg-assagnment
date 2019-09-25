@@ -4,9 +4,10 @@ import android.content.Context
 import com.elifox.legocatalog.api.BaseDataSource
 import com.elifox.legocatalog.di.AppContext
 import com.elifox.legocatalog.di.CoroutineScropeIO
-import com.jdagnogo.blueground.mars.api.LoginServiceApi
+import com.jdagnogo.blueground.mars.api.LoginDao
 import com.jdagnogo.blueground.mars.api.UnitsDao
 import com.jdagnogo.blueground.mars.data.remotedata.LoginRemoteDataSouce
+import com.jdagnogo.blueground.mars.data.remotedata.UnitDetailsRemoteDataSource
 import com.jdagnogo.blueground.mars.data.remotedata.UnitsRemoteDataSource
 import com.jdagnogo.blueground.mars.data.repository.TokenRepository
 import dagger.Module
@@ -18,8 +19,13 @@ import javax.inject.Singleton
 class RepositoryModule {
     @Singleton
     @Provides
-    fun provideLoginRemoteDataSource(service: LoginServiceApi, baseDataSource: BaseDataSource) =
+    fun provideLoginRemoteDataSource(service: LoginDao, baseDataSource: BaseDataSource) =
         LoginRemoteDataSouce(service, baseDataSource)
+
+    @Singleton
+    @Provides
+    fun provideUnitDetailsRemoteDataSource(service: UnitsDao, baseDataSource: BaseDataSource) =
+        UnitDetailsRemoteDataSource(service, baseDataSource)
 
     @Singleton
     @Provides
