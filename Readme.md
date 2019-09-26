@@ -7,9 +7,8 @@ Feel free to send me suggestions or improvements  : jdagnogo11@gmail.com
 -----------------------------------------------------------------------------------------------------------------------------
 
 # Presentation : 
-![alternativetext](screenshots/logo.png)
- <img src="https://bitbucket.org/jdagnogo11/bg-android-assignment/src/develop/screenshots/logo.png" width="300" style=" float : left;">
- 
+![alternativetext](screenshots/logo.png :scale: 50 %)
+
 This application allows you to :
   * Sign in using Blueground API
   * Get all appartments available
@@ -20,6 +19,10 @@ This application allows you to :
 
 # Screenshots : 
 
+![alternativetext](screenshots/Screenshot_20190926_223251_com.jdagnogo.blueground.mars.jpg )
+![alternativetext](screenshots/Screenshot_20190926_223416_com.jdagnogo.blueground.mars.jpg )
+![alternativetext](screenshots/Screenshot_20190926_223434_com.jdagnogo.blueground.mars.jpg )
+![alternativetext](screenshots/Screenshot_20190926_223504_com.jdagnogo.blueground.mars.jpg )
 <img src="https://bitbucket.org/jdagnogo11/bg-android-assignment/src/develop/screenshots/Screenshot_20190926_223251_com.jdagnogo.blueground.mars.jpg" width="300" style=" float : left;">
 <img src="https://bitbucket.org/jdagnogo11/bg-android-assignment/src/develop/screenshots/Screenshot_20190926_223416_com.jdagnogo.blueground.mars.jpg" width="300" style=" float : left;">
 <img src="https://bitbucket.org/jdagnogo11/bg-android-assignment/src/develop/screenshots/Screenshot_20190926_223434_com.jdagnogo.blueground.mars.jpg" width="300" style=" float : left;">
