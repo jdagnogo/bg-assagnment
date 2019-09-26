@@ -7,7 +7,7 @@ Feel free to send me suggestions or improvements  : jdagnogo11@gmail.com
 -----------------------------------------------------------------------------------------------------------------------------
 
 # Presentation : 
-
+![alternativetext](screenshots/logo.png)
  <img src="https://bitbucket.org/jdagnogo11/bg-android-assignment/src/develop/screenshots/logo.png" width="300" style=" float : left;">
  
 This application allows you to :
