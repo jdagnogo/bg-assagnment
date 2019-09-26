@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Blueground Mars</string>
+
+    <string name="error_country">Votre email doit avoir 2 lettres représentant le code d\'un pays après le point(.)</string>
+    <string name="error_at">Votre email doit avoir un et un seul arrobase(@)</string>
+    <string name="error_size">Votre email doit avoir au maximum 4 lettre avec l\'arrobase (@) </string>
+    <string name="error_year_of_birth">Votre email doit avoir 4 chiffre représentant votre année de naissance apres le @(arrobase) et avant le point(.)</string>
+    <string name="error_dot">Votre email doit avoir un et un seul point(.)</string>
+    <string name="error_empty_email">Entrez votre email</string>
+    <string name="login_fail">Le mot de passe et/ou l\'email sont/est incorrecte</string>
+    <string name="book_textview">Vous l\'avez réservé !</string>
+    <string name="book_button">Réserver</string>
+    <string name="error_loading_unit_details">Une erreur est survenue</string>
+    <string name="close">fermer</string>
+    <string name="years">Année :</string>
+    <string name="reference">Réference :</string>
+    <string name="goes_to_mars">Débarque sur Mars !!</string>
+    <string name="sign_in">Se connecter</string>
+    <string name="password">Mot de passe</string>
+    <string name="email">Email</string>
+</resources>
