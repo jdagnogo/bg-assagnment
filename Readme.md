@@ -7,7 +7,7 @@ Feel free to send me suggestions or improvements  : jdagnogo11@gmail.com
 -----------------------------------------------------------------------------------------------------------------------------
 
 # Presentation : 
-![alternativetext](screenshots/logo.png){ width=50% }
+![alternativetext](screenshots/logo.png =250x250)
 
 This application allows you to :
   * Sign in using Blueground API
