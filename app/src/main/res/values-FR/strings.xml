@@ -15,7 +15,7 @@
     <string name="years">Année :</string>
     <string name="reference">Réference :</string>
     <string name="goes_to_mars">Débarque sur Mars !!</string>
-    <string name="sign_in">Se connecter</string>
+    <string name="sign_in">Connexion</string>
     <string name="password">Mot de passe</string>
     <string name="email">Email</string>
 </resources>
