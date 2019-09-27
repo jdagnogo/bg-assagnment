@@ -1,21 +1,23 @@
 <resources>
     <string name="app_name">Blueground Mars</string>
 
-    <string name="error_country">Your email must have a 2 letter country code after the dot</string>
-    <string name="error_at">Your email must have an (@)at and only one</string>
-    <string name="error_size">Your email must have a 2 letter country code after the dot</string>
-    <string name="error_year_of_birth">Your email must contains Year of birth in 4 digits before the @(at) and before the .(dot)</string>
-    <string name="error_dot">Your email must have an (.)dot and only one</string>
-    <string name="error_empty_email">Enter an Email</string>
-    <string name="login_fail">Invalid email and or password</string>
-    <string name="book_textview">You just book it!</string>
-    <string name="book_button">Book</string>
-    <string name="error_loading_unit_details">An error occured</string>
-    <string name="close">close</string>
-    <string name="years">Years :</string>
-    <string name="reference">Reference :</string>
-    <string name="goes_to_mars">Goes to Mars !!</string>
-    <string name="sign_in">Sign In</string>
-    <string name="password">Password</string>
+    <string name="error_country">Η διεύθυνση σας ηλεκτρονικού ταχυδρομείου θα πρέπει να περιλαμβάνει δυο γράμματα που αντιπροσωπεύουν τον κωδικό της χώρας, μετά την τελεία (.)</string>
+    <string name="error_at"> Η διεύθυνση σας ηλεκτρονικού ταχυδρομείου πρέπει να έχει ένα και μοναδικό (@)</string>
+    <string name="error_size"> Η διεύθυνση σας ηλεκτρονικού ταχυδρομείου πρέπει να έχει το πολύ 4 χαρακτήρες συμπεριλαμβανομένου του (@) </string>
+    <string name="error_year_of_birth"> Η διεύθυνση σας ηλεκτρονικού ταχυδρομείου πρέπει να έχει 4 αριθμούς που αντιπροσωπουν το έτος γέννησης σας μετά το χαρακτήρα @ και πριν την τελεία (.)</string>
+    <string name="error_dot"> Η διεύθυνση σας ηλεκτρονικού ταχυδρομείου πρέπει να έχει μια και μοναδική τελεία (.)</string>
+    <string name="error_empty_email">Εισάγετε τη διεύθυνση ηλεκτρονικού ταχυδρομείου σας</string>
+    <string name="login_fail">Ο κωδικός πρόσβασης και/ή η διεύθυνση ηλεκτρονικού ταχυδρομείου είναι λάθος</string>
+    <string name="book_textview">Έχετε κάνει κράτηση !</string>
+    <string name="book_button">Κράτηση</string>
+    <string name="error_loading_unit_details"> Παρουσιάστηκε σφάλμα</string>
+    <string name="close">Κλείσιμο</string>
+    <string name="years">Έτη :</string>
+    <string name="reference"> Αναφορά:</string>
+    <string name="goes_to_mars">Αποβίβαση στον Άρη !!</string>
+    <string name="sign_in">Σύνδεση</string>
+    <string name="password">Κωδικός</string>
     <string name="email">Email</string>
+
+
 </resources>

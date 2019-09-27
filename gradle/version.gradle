@@ -11,4 +11,6 @@ ext {
     pagingVersion = "2.1.0"
     navVersion = "2.1.0"
     glideVersion = '4.9.0'
+    powerMockVersion = '2.0.0'
+    mockitoVersion = '2.23.4'
 }
